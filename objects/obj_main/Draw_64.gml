@@ -1,7 +1,53 @@
+if (g.scene == 1 || g.scene == 4) {
+	draw_set_font(fnt_font);
+	draw_set_halign(fa_left);
+	draw_set_valign(fa_top);
+	if (g.scene == 1) {
+		draw_sprite(bg_morning, g.awake, 960, 540);
+	} else if (g.scene == 4) {
+		draw_sprite((g.ending == 1 ? bg_cope : bg_hope), 0, 960, 540);
+	}
+	draw_set_alpha(g.fade / 20);
+	draw_set_color(#000000);
+	draw_rectangle(0, 0, 1920, 1080, false);
+	var _tx = 68;
+	var _ty = 212;
+	for (var t = 1; t <= g.progress; t++) {
+		var _char = string_char_at(g.thetext, t)
+		if (_char == "#") {
+			_tx = 68;
+			_ty += 40;
+		} else {
+			draw_set_alpha(0.5);
+			draw_set_color(#000000);
+			draw_text_transformed(_tx + 1, _ty + 1.5, _char, 0.6, 0.6, 0);
+			draw_set_alpha(0.8);
+			draw_set_color(g.fading ? #FFFFFF : #864805);
+			draw_text_transformed(_tx, _ty, _char, 0.6, 0.6, 0);
+			_tx += string_width(_char) * 0.6;
+			draw_set_alpha(1);
+		}
+	}
+	draw_set_alpha(1);
+}
+
 if (g.scene == 2) {
-	draw_sprite(bg_game, 0, 960, 540)
-	var _box_x = 410
-	var _box_y = 604
+	draw_sprite(bg_game, 0, 960, 540);
+	draw_set_halign(fa_center);
+	draw_set_valign(fa_middle);
+	draw_set_font(fnt_font_bold)
+	draw_set_color(#000000);
+	var _tsize = 1;
+	var _tang = 0;
+	if (g.fc % 60 < 5) {
+		_tsize = 1.15 - (0.03 * (g.fc % 60));
+		_tang = -6.25 + (1.25 * (g.fc % 60));
+	}
+	draw_text_transformed(1688, 68, g.timer, _tsize, _tsize, _tang);
+	draw_set_color((g.timer > 0 ? #FFFFFF : #B51D52));
+	draw_text_transformed(1686, 66, g.timer, _tsize, _tsize, _tang);
+	var _box_x = 410;
+	var _box_y = 604;
 	for (var i = 0; i < 4; i++) {
 		var _box_sprite = spr_minigame_lipstick;
 		var _box_name = "";
@@ -78,6 +124,9 @@ if (g.scene == 2) {
 				draw_sprite(_bg_sprite, 4, _win_x, _win_y);
 			}
 		}
+		if (_bg_sprite == bg_eyeliner) {
+			draw_sprite_ext(bg_eyeliner_guide, 0, _win_x, _win_y, 1, 1, 0, -1, g.guide);
+		}
 		with (obj_lipstick) {
 			if (!surface_exists(surf)) {
 				surf = surface_create(1920, 1080);
@@ -91,9 +140,11 @@ if (g.scene == 2) {
 			}
 			surface_reset_target();
 			gpu_set_blendmode_ext(bm_dest_colour, bm_zero);
+			draw_set_alpha(0.9);
 			draw_surface(surf, 0, 0);
 			gpu_set_blendmode(bm_normal);
 			surface_free(surf);
+			draw_set_alpha(1);
 		}
 		with (obj_eyeliner) {
 			if (!surface_exists(surf)) {
@@ -108,13 +159,15 @@ if (g.scene == 2) {
 			}
 			surface_reset_target();
 			gpu_set_blendmode_ext(bm_dest_colour, bm_zero);
+			draw_set_alpha(0.9);
 			draw_surface(surf, 0, 0);
 			gpu_set_blendmode(bm_normal);
 			surface_free(surf);
+			draw_set_alpha(1);
 		}
 		if (g.minigame == "outfit") {
 			draw_sprite(bg_mirror, 0, 660, 600);
-			draw_sprite(spr_body, g.day - 1, 660, 600);
+			draw_sprite(spr_body, (g.fit == 4 ? 5 : g.day - 1), 660, 600);
 			var _clothes = spr_clothes1;
 			switch (g.day) {
 				case 1:
@@ -135,7 +188,7 @@ if (g.scene == 2) {
 				default:
 					break;
 			}
-			if (g.fit != 0) { draw_sprite(_clothes, g.fit - 1, 628, 647) };
+			if (g.fit != 0) { draw_sprite(_clothes, g.fit - 1, 627, 653) };
 			draw_sprite(bg_mirror, 1, 660, 600);
 			draw_set_alpha(0);
 			if (g.side > 0) { draw_set_alpha(g.side / 5) };
@@ -163,7 +216,30 @@ if (g.scene == 2) {
 	}
 }
 
-draw_sprite(spr_stressbar, 0, 0, 0)
-var _stress_w = (1255 * g.stress)
-var _stress_h = 1080
-draw_sprite_part(spr_stressbar, 1, 48, 0, _stress_w, _stress_h, 48, 0)
+if (g.scene == 3) {
+	draw_sprite(bg_results, 0, 960, 540);
+	draw_set_font(fnt_font)
+	with (obj_result) {
+		var _ang = 5;
+		draw_set_halign(fa_left);
+		draw_sprite_ext(spr_chibi, happy, x, y, 1, 1, _ang, -1, 1);
+		draw_set_color(#000000)
+		draw_text_transformed(x + lengthdir_x(65, _ang), y + lengthdir_y(65, _ang), result_text, 0.7, 0.7, _ang);
+	}
+	draw_sprite(bg_results, 1, 960, 540);
+}
+
+draw_sprite(spr_stressbar, 0, 0, 0);
+var _stress_w = (1255 * median(0, g.stress, 1));
+var _stress_h = 1080;
+draw_sprite_part(spr_stressbar, 1, 48, 0, _stress_w, _stress_h, 48, 0);
+
+var _data = video_draw();
+var _status = _data[0];
+
+if (_status == 0) {
+    var _surface = _data[1];
+	draw_set_color(#000000)
+	draw_rectangle(0, 0, 1920, 1080, false);
+    draw_surface_stretched(_surface, 240, 0, 1440, 1080);
+} 

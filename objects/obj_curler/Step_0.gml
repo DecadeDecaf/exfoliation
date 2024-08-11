@@ -13,10 +13,12 @@ if (mouse_check_button_pressed(mb_left) && !clamped && !stopped) {
 	x_spd = 0;
 	clamped = true;
 	audio_play_sound(sfx_curler_clamp, 1, false);
-	if (x > 1178) {
+	if (x > 1180) {
 		g.curled = true;
+		g.stress -= 0.04;
+		audio_play_sound(sfx_heal, 1, false);
 	} else {
-		g.stress += 0.04;
+		g.stress += 0.05;
 	}
 }
 
@@ -47,7 +49,7 @@ if (clamped) {
 		}
 	}
 } else {
-	x_spd += 0.025;
+	x_spd += 0.025 * g.day;
 	if (image_alpha < 1) {
 		image_alpha += 0.1;
 	}

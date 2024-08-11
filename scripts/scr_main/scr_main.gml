@@ -22,6 +22,19 @@ function init() {
 	g.stress = 0;
 	g.day = 1;
 	g.scene = 1;
+	g.texts = [
+		"It happened only yesterday...##(click to continue)",
+		"A freak accident at the laboratory left Bernadette#dead, only to be resurrected by her co-worker and#taken to bed.",
+		"Newly back to life, she'll have to get ready for#another day on the job!",
+		"~alarm",
+		"Her alarm blared.##\"oh god oh what the hell. what is happening#where even am i\"##...##\"how am i not dead what\"",
+		"~fade",
+		"Bernadette limped out of bed and began her#morning routine. She scowled at herself in the#mirror and spotted signs of decay; her body#was decomposing.##Like a zombie.",
+		"\"no no no no no no no... what?! what is happening#to me???\"##\"i can't go out like this. i gotta cover myself up\"",
+		"It was decided. She had to hide this ugly part of her.##And so, after gathering her makeup and clothes, that's#exactly what she did."
+	];
+	g.thetext = "";
+	g.progress = 0;
 	g.tasks = [];
 	g.outfits = [2, 3, 3, 1, 1];
 	g.fit = 0;
@@ -33,6 +46,8 @@ function init() {
 	g.clicked = 0;
 	g.curled = false;
 	g.ouch = false;
+	g.timer = 75;
+	g.ending = 1;
 	reset_tasks();
 	
 	exception_unhandled_handler(error);

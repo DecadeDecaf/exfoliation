@@ -18,6 +18,6 @@
   "preload": false,
   "sampleRate": 44100,
   "soundFile": "mus_transition_75.mp3",
-  "type": 1,
-  "volume": 0.5,
+  "type": 0,
+  "volume": 0.4,
 }
