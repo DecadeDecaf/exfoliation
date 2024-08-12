@@ -67,7 +67,7 @@ if (g.scene == 1 || g.scene == 4) {
 		} else {
 			if (g.day == 5) {
 				g.scene = 4;
-				g.thetext = (g.ending == 1 ? "The damage had been done.##Bernadette could keep her secret, but only#at the cost of her freedom.##She rearely went outside, except for work.#She only wore hoodies, sweatpants, and#tape to keep her limbs intact.##Bernadette lived the rest of her life in#shame.##(ending 1 of 2)" : "At her absolute lowest, Bernadette gave up#trying to hide her imperfections, and over#time, she learned to appreciate them.##The decision to embrace her new look#was the best one she ever made. Though#some disparaged her for how she looked,#she surrounded herself with those who#recognized the beauty in her confidence.##Love yourself, even when your limbs are#falling off.##(ending 2 of 2)");
+				g.thetext = (g.ending == 1 ? "The damage had been done.##Bernadette could keep her secret, but only#at the cost of her freedom.##She rarely went outside, except for work.#She only wore hoodies, sweatpants, and#tape to keep her limbs intact.##Bernadette lived the rest of her life in#shame.##(ending 1 of 2)" : "At her absolute lowest, Bernadette gave up#trying to hide her imperfections, and over#time, she learned to appreciate them.##The decision to embrace her new look#was the best one she ever made. Though#some disparaged her for how she looked,#she surrounded herself with those who#recognized the beauty in her confidence.##Love yourself, even when your limbs are#falling off.##(ending 2 of 2)");
 				g.awake = false;
 				g.fading = false;
 				g.fade = 0;
@@ -101,7 +101,7 @@ if (g.scene == 1 || g.scene == 4) {
 						_result.result_text = "The pigmentation of your skin was\nappallingly dull in the laboratory lighting.";
 						break;
 					case 3:
-						_result.result_text = "You spend the day suppressing a thirst\nfor brains.";
+						_result.result_text = "You spent the day suppressing a thirst\nfor brains.";
 						break;
 					case 4:
 						_result.result_text = "You're still sad about that one time your\ndog fell off that cliff.";
