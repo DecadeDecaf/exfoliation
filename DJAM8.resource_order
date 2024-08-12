@@ -10,10 +10,10 @@
     {"name":"sprites","order":1,"path":"folders/sprites.yy",},
     {"name":"backdrops","order":3,"path":"folders/sprites/backdrops.yy",},
     {"name":"minigames","order":4,"path":"folders/sprites/minigames.yy",},
+    {"name":"clothes","order":5,"path":"folders/sprites/minigames/clothes.yy",},
     {"name":"ui","order":1,"path":"folders/sprites/ui.yy",},
     {"name":"ux","order":2,"path":"folders/sprites/ux.yy",},
     {"name":"tilesets","order":2,"path":"folders/tilesets.yy",},
-    {"name":"clothes","order":5,"path":"folders/sprites/minigames/clothes.yy",},
   ],
   "ResourceOrderSettings": [
     {"name":"spr_clothes2","order":1,"path":"sprites/spr_clothes2/spr_clothes2.yy",},

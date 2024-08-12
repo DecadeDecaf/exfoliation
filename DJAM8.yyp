@@ -21,10 +21,10 @@
     {"resourceType":"GMFolder","resourceVersion":"1.0","name":"sprites","folderPath":"folders/sprites.yy",},
     {"resourceType":"GMFolder","resourceVersion":"1.0","name":"backdrops","folderPath":"folders/sprites/backdrops.yy",},
     {"resourceType":"GMFolder","resourceVersion":"1.0","name":"minigames","folderPath":"folders/sprites/minigames.yy",},
+    {"resourceType":"GMFolder","resourceVersion":"1.0","name":"clothes","folderPath":"folders/sprites/minigames/clothes.yy",},
     {"resourceType":"GMFolder","resourceVersion":"1.0","name":"ui","folderPath":"folders/sprites/ui.yy",},
     {"resourceType":"GMFolder","resourceVersion":"1.0","name":"ux","folderPath":"folders/sprites/ux.yy",},
     {"resourceType":"GMFolder","resourceVersion":"1.0","name":"tilesets","folderPath":"folders/tilesets.yy",},
-    {"resourceType":"GMFolder","resourceVersion":"1.0","name":"clothes","folderPath":"folders/sprites/minigames/clothes.yy",},
   ],
   "IncludedFiles": [
     {"resourceType":"GMIncludedFile","resourceVersion":"1.0","name":"dog falling.mp4","CopyToMask":-1,"filePath":"datafiles",},

@@ -7,6 +7,17 @@ if (g.scene == 1 || g.scene == 4) {
 	} else if (g.scene == 4) {
 		draw_sprite((g.ending == 1 ? bg_cope : bg_hope), 0, 960, 540);
 	}
+	with (obj_exclamation) {
+		var _shake_x = random_range(-3, 3);
+		var _shake_y = random_range(-3, 3);
+		var _alph = 1;
+		if (lifespan < 20) {
+			_alph = lifespan / 20;
+		}
+		if (lifespan <= 90) {
+			draw_sprite_ext(bg_morning, 2, 960 + _shake_x, 540 + _shake_y, 1, 1, 0, -1, _alph);
+		}
+	}
 	draw_set_alpha(g.fade / 20);
 	draw_set_color(#000000);
 	draw_rectangle(0, 0, 1920, 1080, false);
@@ -222,6 +233,7 @@ if (g.scene == 3) {
 	with (obj_result) {
 		var _ang = 5;
 		draw_set_halign(fa_left);
+		draw_set_valign(fa_middle);
 		draw_sprite_ext(spr_chibi, happy, x, y, 1, 1, _ang, -1, 1);
 		draw_set_color(#000000)
 		draw_text_transformed(x + lengthdir_x(65, _ang), y + lengthdir_y(65, _ang), result_text, 0.7, 0.7, _ang);
