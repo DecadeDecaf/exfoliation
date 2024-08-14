@@ -15,6 +15,11 @@ function init() {
 	if (g.desktop) {
 		surface_resize(application_surface, 1920, 1080);
 		window_set_size(1280, 720);
+	} else {
+		surface_resize(application_surface, 1280, 720);
+		var _vx = camera_get_view_width(view_camera[0]);
+		var _vy = camera_get_view_height(view_camera[0]);
+		display_set_gui_size(_vx, _vy);
 	}
 	display_reset(8, true);
 	
