@@ -8,9 +8,9 @@
   },
   "bitDepth": 1,
   "bitRate": 128,
-  "compression": 3,
+  "compression": 1,
   "conversionMode": 0,
-  "duration": 30.72,
+  "duration": 25.6,
   "parent": {
     "name": "music",
     "path": "folders/music.yy",

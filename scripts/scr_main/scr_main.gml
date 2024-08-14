@@ -12,8 +12,10 @@ function init() {
 	g.fc = 0;
 	
 	draw_set_circle_precision(64);
-	surface_resize(application_surface, 1920, 1080);
-	window_set_size(1280, 720);
+	if (g.desktop) {
+		surface_resize(application_surface, 1920, 1080);
+		window_set_size(1280, 720);
+	}
 	display_reset(8, true);
 	
 	audio_master_gain(g.vol);

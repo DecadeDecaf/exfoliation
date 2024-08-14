@@ -42,7 +42,7 @@ if (g.scene == 1 || g.scene == 4) {
 		}
 	} else {
 		g.progress++;
-		if (mouse_check_button_released(mb_left) && g.scene == 1 && mouse_y < 912) {
+		if (mouse_check_button_released(mb_left) && g.scene == 1 && mouse_y < 872) {
 			if (g.progress < string_length(g.thetext)) {
 				g.progress = string_length(g.thetext);
 			} else {
@@ -74,52 +74,20 @@ if (g.scene == 1 || g.scene == 4) {
 				audio_stop_all();
 			} else {
 				g.scene++;
-				var _result;
-				var _land_x = 268;
-				var _land_y = 800;
-				_result = instance_create_depth(_land_x, 0, depth, obj_result);
-				_result.happy = g.curled;
-				_result.result_text = (_result.happy ? "Hey, at least your lashes looked fine!" : "Your eyelashes weren't curly and literally\neverybody noticed.");
-				_result.land_y = _land_y;
-				_land_x -= 14;
-				_land_y -= 150;
-				_result = instance_create_depth(_land_x, 0, depth, obj_result);
-				_result.happy = (g.fit == g.outfits[@ g.day - 1]);
-				_result.result_text = (_result.happy ? "Your outfit successfully covered up those\nhideous blemishes." : "Your outfit failed to hide your zombie-\nlike features.");
-				_result.land_y = _land_y;
-				_result.delay = 18;
-				_land_x -= 14;
-				_land_y -= 150;
-				_result = instance_create_depth(_land_x, 0, depth, obj_result);
-				_result.happy = false;
-				_result.result_text = "";
-				switch (g.day) {
-					case 1:
-						_result.result_text = "Your co-worker heard you idly mutter\nthe word, \"bleugh.\"";
-						break;
-					case 2:
-						_result.result_text = "The pigmentation of your skin was\nappallingly dull in the laboratory lighting.";
-						break;
-					case 3:
-						_result.result_text = "You spent the day suppressing a thirst\nfor brains.";
-						break;
-					case 4:
-						_result.result_text = "You're still sad about that one time your\ndog fell off that cliff.";
-						break;
-					default:
-						break;
-				}
-				_result.land_y = _land_y;
-				_result.delay = 36;
-				_land_x -= 14;
-				_land_y -= 150;
-				_result = instance_create_depth(_land_x, 0, depth, obj_result);
-				_result.happy = (g.timer > 0);
-				_result.result_text = (_result.happy ? "You made it just in time for work." : "You were several minutes late to work.");
-				_result.land_y = _land_y;
-				_result.delay = 54;
-				_land_x -= 14;
-				_land_y -= 150;
+				var _land_x = (g.desktop ? 268 : 226);
+				var _land_y = (g.desktop ? 800 : 350);
+				var _land_x_off = (g.desktop ? 14 : -14);
+				var _land_y_off = (g.desktop ? 150 : -150);
+				if (g.desktop) { result_four(_land_x, _land_y); } else { result_one(_land_x, _land_y); }
+				_land_x -= _land_x_off;
+				_land_y -= _land_y_off;
+				if (g.desktop) { result_three(_land_x, _land_y); } else { result_two(_land_x, _land_y); }
+				_land_x -= _land_x_off;
+				_land_y -= _land_y_off;
+				if (g.desktop) { result_two(_land_x, _land_y); } else { result_three(_land_x, _land_y); }
+				_land_x -= _land_x_off;
+				_land_y -= _land_y_off;
+				if (g.desktop) { result_one(_land_x, _land_y); } else { result_four(_land_x, _land_y); }
 				instance_create_depth(960, 540, depth - 1, obj_door);
 				audio_stop_all();
 				audio_play_sound(mus_fanfare, 1, false);

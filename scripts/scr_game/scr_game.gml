@@ -86,3 +86,50 @@ function get_transition_music() {
 	}
 	return _mus;
 }
+
+function result_four(_land_x, _land_y) {
+	var _result = instance_create_depth(_land_x, 0, depth, obj_result);
+	_result.happy = g.curled;
+	_result.result_text = (_result.happy ? "Hey, at least your lashes looked fine!" : "Your eyelashes weren't curly and literally\neverybody noticed.");
+	_result.land_y = _land_y;
+}
+
+function result_three(_land_x, _land_y) {
+	var _result = instance_create_depth(_land_x, 0, depth, obj_result);
+	_result.happy = (g.fit == g.outfits[@ g.day - 1]);
+	_result.result_text = (_result.happy ? "Your outfit successfully covered up those\nhideous blemishes." : "Your outfit failed to hide your zombie-\nlike features.");
+	_result.land_y = _land_y;
+	_result.delay = 18;
+}
+
+function result_two(_land_x, _land_y) {
+	var _result = instance_create_depth(_land_x, 0, depth, obj_result);
+	_result.happy = false;
+	_result.result_text = "";
+	switch (g.day) {
+		case 1:
+			_result.result_text = "Your co-worker heard you idly mutter\nthe word, \"bleugh.\"";
+			break;
+		case 2:
+			_result.result_text = "The pigmentation of your skin was\nappallingly dull in the laboratory lighting.";
+			break;
+		case 3:
+			_result.result_text = "You spent the day suppressing a thirst\nfor brains.";
+			break;
+		case 4:
+			_result.result_text = "You're still sad about that one time your\ndog fell off that cliff.";
+			break;
+		default:
+			break;
+	}
+	_result.land_y = _land_y;
+	_result.delay = 36;
+}
+
+function result_one(_land_x, _land_y) {
+	var _result = instance_create_depth(_land_x, 0, depth, obj_result);
+	_result.happy = (g.timer > 0);
+	_result.result_text = (_result.happy ? "You made it just in time for work." : "You were several minutes late to work.");
+	_result.land_y = _land_y;
+	_result.delay = 54;
+}
