@@ -9,7 +9,7 @@ if (x > 1190 && !clamped && !stopped) {
 	g.ouch = true;
 }
 
-if (mouse_check_button_pressed(mb_left) && !clamped && !stopped) {
+if (mouse_check_button_pressed(mb_left) && !clamped && !stopped && !g.pressing) {
 	x_spd = 0;
 	clamped = true;
 	audio_play_sound(sfx_curler_clamp, 1, false);
@@ -20,6 +20,7 @@ if (mouse_check_button_pressed(mb_left) && !clamped && !stopped) {
 	} else {
 		g.stress += 0.05;
 	}
+	g.curler++;
 }
 
 if (clamped) {

@@ -49,6 +49,10 @@ function init() {
 	g.transition = -1;
 	g.tfc = 0;
 	g.tbpm = 48;
+	g.skipped = [false, false, false];
+	g.lipstick = 0;
+	g.curler = 0;
+	g.eyeliner = 0;
 	g.pressing = false;
 	g.clicked = 0;
 	g.curled = false;

@@ -1,8 +1,15 @@
 repeat (8) {
 	var _friction = 48;
 	var _max_spd = 14
+	
+	var _button = false;
+	var _win_x = 960;
+	var _win_y = 520;
+	if (mouse_x < _win_x + 442 && mouse_y < _win_y + 330 && mouse_x > _win_x + 192 && mouse_y > _win_y + 224) {
+		_button = true;
+	}
 
-	if (mouse_check_button(mb_left)) {
+	if (mouse_check_button(mb_left) && (!mouse_check_button_pressed(mb_left) || !_button) && !g.pressing) {
 		image_index = 1;
 		_friction = 64;
 		_max_spd = 4;
@@ -19,14 +26,7 @@ repeat (8) {
 		if (shake < 0) { shake = 0; }
 	}
 	
-	var _button = false;
-	var _win_x = 960;
-	var _win_y = 520;
-	if (mouse_x < _win_x + 442 && mouse_y < _win_y + 330 && mouse_x > _win_x + 192 && mouse_y > _win_y + 224) {
-		_button = true;	
-	}
-	
-	if (x > 510 && y > 190 && x < 1410 && y < 850 && pressing > 0 && !_button) {
+	if (x > 510 && y > 190 && x < 1410 && y < 850 && pressing > 0 && (!mouse_check_button_pressed(mb_left) || !_button) && !g.pressing) {
 		array_push(spots, [x, y, image_angle + 35, pressing * 0.04]);
 		var _meeting = false;
 		if (position_meeting(x, y, obj_hitbox) || position_meeting(x - 4, y - 4, obj_hitbox) || position_meeting(x + 4, y - 4, obj_hitbox) || position_meeting(x - 4, y + 4, obj_hitbox) || position_meeting(x + 4, y + 4, obj_hitbox)) {
@@ -39,6 +39,7 @@ repeat (8) {
 			dmg_cooldown = 15;
 			g.guide = 3;
 		}
+		g.eyeliner++;
 	}
 	
 	x -= median(-_max_spd, (x - mouse_x) / _friction, _max_spd);

@@ -107,24 +107,28 @@ if (g.scene == 1 || g.scene == 4) {
 				instance_create_depth(mouse_x, mouse_y, depth - 1, obj_lipstick);
 				var _hitbox = instance_create_depth(960, 520, depth, obj_hitbox);
 				_hitbox.sprite_index = bg_lipstick_hitbox;
+				g.lipstick = 0;
 			}
 			if (g.minigame == "curler") {
 				g.curled = false;
 				g.ouch = false;
 				instance_create_depth(720, 480, depth - 1, obj_curler);
+				g.curler = 0;
 			}
 			if (g.minigame == "eyeliner") {
 				instance_create_depth(mouse_x, mouse_y, depth - 1, obj_eyeliner);
 				var _hitbox = instance_create_depth(960, 520, depth, obj_hitbox);
 				_hitbox.sprite_index = bg_eyeliner_hitbox;
 				g.guide = 3;
+				g.eyeliner = 0;
 			}
 			if (g.minigame == "outfit") {
 				g.fit = 0;
 				display = 220;
 				var _fit;
 				var _fit_x = 1300;
-				if (g.day == 5) { _fit_x = 1200; }
+				var _liberated = (g.skipped[@ 0] && g.skipped[@ 1] && g.skipped[@ 2]);
+				if (g.day == 5 && _liberated) { _fit_x = 1200; }
 				_fit = instance_create_depth(_fit_x, 500, -1, obj_outfit);
 				_fit.btn_type = 1;
 				_fit_x += 120;
@@ -134,7 +138,7 @@ if (g.scene == 1 || g.scene == 4) {
 				_fit = instance_create_depth(_fit_x, 500, -1, obj_outfit);
 				_fit.btn_type = 3;
 				_fit_x += 200;
-				if (g.day == 5) {
+				if (g.day == 5 && _liberated) {
 					_fit = instance_create_depth(_fit_x, 500, -1, obj_outfit);
 					_fit.btn_type = 4;
 				}
@@ -144,6 +148,9 @@ if (g.scene == 1 || g.scene == 4) {
 		if (g.clicked > 0) {
 			g.clicked--;
 			if (g.clicked == 0) {
+				if (g.minigame == "lipstick" && g.lipstick <= 120) { g.skipped[@ 0] = true; }
+				if (g.minigame == "curler" && g.curler <= 1) { g.skipped[@ 1] = true; }
+				if (g.minigame == "eyeliner" && g.eyeliner <= 320) { g.skipped[@ 2] = true; }
 				instance_destroy(obj_lipstick);
 				instance_destroy(obj_curler);
 				instance_destroy(obj_eyeliner);

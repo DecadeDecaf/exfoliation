@@ -8,10 +8,10 @@ repeat (3) {
 		_button = true;	
 	}
 
-	if (mouse_check_button(mb_left)) {
+	if (mouse_check_button(mb_left) && (!mouse_check_button_pressed(mb_left) || !_button) && !g.pressing) {
 		image_index = 1;
 		_friction = 64;
-		if (x > 510 && y > 190 && x < 1410 && y < 850 && !_button) {
+		if (x > 510 && y > 190 && x < 1410 && y < 850) {
 			array_push(spots, [x, y, image_angle + 35]);
 			if (!position_meeting(x, y, obj_hitbox) && dmg_cooldown == 0) {
 				audio_sound_pitch(sfx_stress_damage, random_range(1.2, 1.3));
@@ -19,6 +19,7 @@ repeat (3) {
 				g.stress += 0.03;
 				dmg_cooldown = 25;
 			}
+			g.lipstick++;
 		}
 	} else {
 		image_index = 0;
